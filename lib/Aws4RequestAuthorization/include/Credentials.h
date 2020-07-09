@@ -21,15 +21,15 @@ class Credentials {
         aws_region_(aws_region),
         aws_service_(aws_service) {}
 
-  Hmac sign(const etl::string_view &date_iso8601, const etl::string_view &string_to_sign) const {
+  Sha256::hash_str_t sign(const etl::string_view &date_iso8601, const etl::string_view &string_to_sign) const {
     etl::string<44> secret_key{"AWS4"};
     secret_key.append(secret_access_key_.begin(), secret_access_key_.end());
     etl::string_view date_yyyymmdd{date_iso8601.begin(), 8};
-    auto key_date = Hmac{date_yyyymmdd, secret_key};
-    auto key_region = Hmac{aws_region_, key_date};
-    auto key_service = Hmac{aws_service_, key_region};
-    auto key_signing = Hmac{etl::make_string("aws4_request"), key_service};
-    return {string_to_sign, key_signing};
+    Sha256::hash_t key_date = Hmac{date_yyyymmdd, secret_key};
+    Sha256::hash_t key_region = Hmac{aws_region_, key_date};
+    Sha256::hash_t key_service = Hmac{aws_service_, key_region};
+    Sha256::hash_t key_signing = Hmac{etl::make_string("aws4_request"), key_service};
+    return Hmac{string_to_sign, key_signing};
   }
 
   etl::string<AWS_ACCESS_KEY_LEN> get_access_key() const { return access_key_id_; }

@@ -59,6 +59,7 @@ class Aws4RequestAuthorization {
                                      const etl::string_view &payload_hash) {
     headers.insert(Header{etl::make_string("x-amz-content-sha256"), payload_hash, true});
     headers.insert(Header{etl::make_string("x-amz-date"), date_iso8601, true});
+    return headers;
   }
 
   static constexpr size_t MAX_CANONICAL_REQUEST_STR_LEN =

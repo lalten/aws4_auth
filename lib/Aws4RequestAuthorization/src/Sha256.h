@@ -1,4 +1,4 @@
-#pragma Once
+#pragma once
 
 #include <etl/array.h>
 #include <etl/cstring.h>
@@ -15,7 +15,7 @@ class Sha256 {
   using hash_t = etl::array<uint8_t, NUM_HASH_BYTES>;
   using hash_str_t = etl::string<2 * NUM_HASH_BYTES>;
 
-  Sha256() = delete;
+  Sha256() = default;
   Sha256(const Sha256 &) = default;
   Sha256(Sha256 &&) = default;
 
