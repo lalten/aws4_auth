@@ -27,7 +27,7 @@ void test_credentials() {
       "20150915T124500Z\n"
       "20150915/us-east-1/s3/aws4_request\n"
       "ef7c45cc2b0f100ea5d65024643f5cbaf83e7ba2717108905acd605cfe17bc6b");
-  Sha256::hash_str_t signature = credentials.sign(date_iso8601, string_to_sign);
+  auto signature = credentials.sign(date_iso8601, string_to_sign);
 
   TEST_ASSERT_EQUAL_STRING("182072eb53d85c36b2d791a1fa46a12d23454ec1e921b02075c23aee40166d5a", signature.c_str());
 }
