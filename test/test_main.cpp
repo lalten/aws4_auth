@@ -1,5 +1,7 @@
+// Data based on: https://czak.pl/2015/09/15/s3-rest-api-with-curl.html
+
 // compile only if in correct env/testing situation
-// #if defined(UNIT_TEST)
+#if defined(UNIT_TEST)
 
 #include <unity.h>
 
@@ -73,4 +75,4 @@ int main() {
   UNITY_END();
 }
 
-// #endif
+#endif
