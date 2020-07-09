@@ -32,7 +32,7 @@ public:
     etl::string_view http_method;
     etl::string_view uri;
     etl::string_view query;
-    etl::string_view http_version;
+    etl::string_view http_version;  // TODO(laurenz): not needed
     etl::vector<Header, N> headers;
   };
 

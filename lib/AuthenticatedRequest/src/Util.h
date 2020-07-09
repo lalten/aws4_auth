@@ -10,7 +10,6 @@ namespace Util {
 
 template <size_t N = 1024>
 etl::string<N> lower(const etl::string_view &string) {
-
   etl::string<N> result{};
 
   for (auto it = string.cbegin(); it != string.cend(); it++) {
@@ -21,18 +20,6 @@ etl::string<N> lower(const etl::string_view &string) {
       result.push_back(c);
     }
   }
-
-  // // etl::string<N> result{string.data(), string.size()};
-  // etl::string<N> result{};
-  // etl::transform_s(string.begin(), string.end(),
-  //                  etl::back_inserter(result) result.begin() +
-  //                      result.max_size(),
-  //                  [](const char c) -> char {
-  //                    if (c >= 'A' && c <= 'Z') {
-  //                      return c - 'A' + 'a';
-  //                    }
-  //                    return c;
-  //                  });
   return result;
 }
 

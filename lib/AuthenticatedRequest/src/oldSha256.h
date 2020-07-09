@@ -18,13 +18,12 @@ template <typename I, typename K> constexpr hash_t hmac(I input, K key) {
   size_t msg_len = input.size();
 
   hash_t result{};
-  result.fill(0x00);
   uint8_t *result_ptr = result.data();
   ETL_ASSERT(result_ptr, ETL_ERROR(etl::exception));
   int err = 0;
 
   mbedtls_md_type_t md_type = MBEDTLS_MD_SHA256;
-  mbedtls_md_context_t ctx_ {0};
+  mbedtls_md_context_t ctx_;
   mbedtls_md_init(&ctx_);
   err = mbedtls_md_setup(&ctx_, mbedtls_md_info_from_type(md_type), true);
   ETL_ASSERT(err == 0, ETL_ERROR(etl::exception));
