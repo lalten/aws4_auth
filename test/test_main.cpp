@@ -5,9 +5,6 @@
 #include "Aws4Auth.h"
 #include "Credentials.h"
 
-void setUp(){}
-void tearDown(){}
-
 void test_credentials() {
   auto access_key_id = etl::make_string("AKIAIOSFODNN7EXAMPLE");
   auto secret_access_key = etl::make_string("wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY");
