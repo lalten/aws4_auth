@@ -1,0 +1,26 @@
+{
+    "name": "aws4_auth",
+    "version": "0.1.0",
+    "description": "Calculate AWS4-HMAC-SHA256 Authentication headers.",
+    "keywords": "AWS,AWS4,Signature,Authentication,HMAC,SHA256,HTTP",
+    "authors": [
+        {
+            "name": "lalten",
+            "email": "github@laure.nz",
+            "maintainer": true
+        }
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/lalten/aws4_auth.git"
+    },
+    "license": "MIT",
+    "export": {
+        "include": "lib/aws4_auth"
+    },
+    "frameworks": "*",
+    "platforms": "*",
+    "examples": [
+        "test/test_main.cpp"
+    ]
+}
