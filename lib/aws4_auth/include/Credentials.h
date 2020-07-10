@@ -4,6 +4,8 @@
 
 class string_view;
 
+namespace Aws4Auth {
+
 class Credentials {
  public:
   static constexpr size_t MAX_AWS_REGION_NAME_LEN{16};
@@ -32,3 +34,5 @@ class Credentials {
   const etl::string<MAX_AWS_REGION_NAME_LEN> aws_region_;
   const etl::string<MAX_AWS_SERVICE_NAME_LEN> aws_service_;
 };
+
+}  // namespace Aws4Auth

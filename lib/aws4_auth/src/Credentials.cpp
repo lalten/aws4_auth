@@ -4,6 +4,7 @@
 
 #include "Sha256.h"
 
+namespace Aws4Auth {
 Sha256::hash_str_t Credentials::sign(const etl::string_view &date_iso8601,
                                      const etl::string_view &string_to_sign) const {
   etl::string<44> secret_key{"AWS4"};
@@ -15,3 +16,4 @@ Sha256::hash_str_t Credentials::sign(const etl::string_view &date_iso8601,
   Sha256::hash_t key_signing = Hmac{etl::make_string("aws4_request"), key_service};
   return Hmac{string_to_sign, key_signing};
 }
+}  // namespace Aws4Auth

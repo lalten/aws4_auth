@@ -5,7 +5,7 @@
 
 #include <unity.h>
 
-#include "Aws4RequestAuthorization.h"
+#include "Aws4Auth.h"
 #include "Credentials.h"
 
 static const auto access_key_id = etl::make_string("AKIAIOSFODNN7EXAMPLE");
@@ -18,7 +18,7 @@ void setUp() {}
 void tearDown() {}
 
 void test_credentials() {
-  Credentials credentials{access_key_id, secret_access_key, aws_region, aws_service};
+  Aws4Auth::Credentials credentials{access_key_id, secret_access_key, aws_region, aws_service};
 
   TEST_ASSERT_EQUAL_STRING(access_key_id.c_str(), credentials.get_access_key().c_str());
   TEST_ASSERT_EQUAL_STRING(aws_region.c_str(), credentials.get_region().c_str());
@@ -35,15 +35,15 @@ void test_credentials() {
 }
 
 void test_make_authenticated_request_headers() {
-  Credentials credentials{access_key_id, secret_access_key, aws_region, aws_service};
+  Aws4Auth::Credentials credentials{access_key_id, secret_access_key, aws_region, aws_service};
   auto http_method = etl::make_string("GET");
   auto uri = etl::make_string("/");
   auto query = etl::string<1>("");
   auto payload = etl::string<1>("");
-  Aws4RequestAuthorization::headers_t input_headers{Aws4RequestAuthorization::Header{
-      etl::make_string("host"), etl::make_string("my-precious-bucket.s3.amazonaws.com")}};
-  auto full_headers = Aws4RequestAuthorization::make_authenticated_request_headers(
-      credentials, http_method, uri, query, input_headers, date_iso8601, payload);
+  Aws4Auth::headers_t input_headers{
+      Aws4Auth::Header{etl::make_string("host"), etl::make_string("my-precious-bucket.s3.amazonaws.com")}};
+  auto full_headers = Aws4Auth::make_authenticated_request_headers(credentials, http_method, uri, query, input_headers,
+                                                                   date_iso8601, payload);
 
   TEST_ASSERT_EQUAL_size_t(4, full_headers.size());
   auto fh_it = full_headers.begin();
@@ -52,8 +52,7 @@ void test_make_authenticated_request_headers() {
       "AWS4-HMAC-SHA256 "
       "Credential=AKIAIOSFODNN7EXAMPLE/20150915/us-east-1/s3/aws4_request, "
       "SignedHeaders=host;x-amz-content-sha256;x-amz-date, "
-      "Signature="
-      "182072eb53d85c36b2d791a1fa46a12d23454ec1e921b02075c23aee40166d5a",
+      "Signature=182072eb53d85c36b2d791a1fa46a12d23454ec1e921b02075c23aee40166d5a",
       fh_it->value().c_str());
   fh_it++;
   TEST_ASSERT_EQUAL_STRING("host", fh_it->name().c_str());
