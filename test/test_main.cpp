@@ -1,15 +1,9 @@
-// Data based on: https://czak.pl/2015/09/15/s3-rest-api-with-curl.html
-
-// compile only if in correct env/testing situation
-#if defined(UNIT_TEST)
+// Based on: https://czak.pl/2015/09/15/s3-rest-api-with-curl.html
 
 #include <unity.h>
 
 #include "Aws4Auth.h"
 #include "Credentials.h"
-
-void setUp() {}
-void tearDown() {}
 
 void test_credentials() {
   auto access_key_id = etl::make_string("AKIAIOSFODNN7EXAMPLE");
@@ -39,7 +33,7 @@ void test_make_authenticated_request_headers() {
   auto aws_service = etl::make_string("s3");
   auto date_iso8601 = etl::make_string("20150915T124500Z");
   Aws4Auth::Credentials credentials{access_key_id, secret_access_key, aws_region, aws_service};
-  
+
   auto http_method = etl::make_string("GET");
   auto uri = etl::make_string("/");
   auto query = etl::string<1>("");
@@ -78,5 +72,3 @@ int main() {
 
   UNITY_END();
 }
-
-#endif
