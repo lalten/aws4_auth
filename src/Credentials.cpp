@@ -1,4 +1,4 @@
-#include "Credentials.h"
+#include "Aws4Auth/Credentials.h"
 
 #include <etl/string_view.h>
 

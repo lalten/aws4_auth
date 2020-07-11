@@ -2,8 +2,8 @@
 
 #include <unity.h>
 
-#include "Aws4Auth.h"
-#include "Credentials.h"
+#include "Aws4Auth/Aws4Auth.h"
+#include "Aws4Auth/Credentials.h"
 
 void test_credentials() {
   auto access_key_id = etl::make_string("AKIAIOSFODNN7EXAMPLE");

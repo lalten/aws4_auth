@@ -1,8 +1,8 @@
-#include "Aws4Auth.h"
+#include "Aws4Auth/Aws4Auth.h"
 
 #include <etl/string_view.h>
 
-#include "Credentials.h"
+#include "Aws4Auth/Credentials.h"
 #include "Sha256.h"
 
 namespace Aws4Auth {
