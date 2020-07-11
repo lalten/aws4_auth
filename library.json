@@ -22,5 +22,9 @@
     "platforms": "*",
     "examples": [
         "test/test_main.cpp"
-    ]
+    ],
+    "dependencies": {
+        "mbedtls": "https://github.com/lalten/mbedtls.git#feature/library.json",
+        "Embedded Template Library": "https://github.com/ETLCPP/etl.git#18.4.0"
+    }
 }
