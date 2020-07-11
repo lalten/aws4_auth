@@ -2,11 +2,11 @@
 
 #include "Credentials.h"
 #include "Header.h"
+#include "Config.h"
 
 class string_view;
 
 namespace Aws4Auth {
-constexpr size_t MAX_PAYLOAD_LEN{4096};
 
 using headers_t = etl::set<Header, MAX_NUM_HEADERS>;
 
