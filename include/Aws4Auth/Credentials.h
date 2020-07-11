@@ -20,7 +20,12 @@ class Credentials {
       : access_key_id_(access_key_id),
         secret_access_key_(secret_access_key),
         aws_region_(aws_region),
-        aws_service_(aws_service) {}
+        aws_service_(aws_service) {
+    ETL_ASSERT(!access_key_id_.truncated(), ETL_ERROR(etl::exception));
+    ETL_ASSERT(!secret_access_key_.truncated(), ETL_ERROR(etl::exception));
+    ETL_ASSERT(!aws_region_.truncated(), ETL_ERROR(etl::exception));
+    ETL_ASSERT(!aws_service_.truncated(), ETL_ERROR(etl::exception));
+  }
 
   etl::string<64> sign(const etl::string_view &date_iso8601, const etl::string_view &string_to_sign) const;
 
